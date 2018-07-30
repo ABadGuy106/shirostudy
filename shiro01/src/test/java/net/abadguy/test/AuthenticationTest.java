@@ -17,6 +17,7 @@ public class AuthenticationTest {
     @Before
     public void addUser(){
         realm.addAccount("tom","1234");
+        realm.addAccount("tt","1234","admin");
     }
 
     @Test
@@ -41,6 +42,31 @@ public class AuthenticationTest {
         System.out.println("登录是否成功："+ subject.isAuthenticated());
        //退出登陆
         subject.logout();
+
+
+    }
+
+    @Test
+    public void testAuthentication1(){
+        //构建SecurityManager环境
+        DefaultSecurityManager defaultSecurityManager=new DefaultSecurityManager();
+        defaultSecurityManager.setRealm(realm);
+        //主体提交认证请求
+        SecurityUtils.setSecurityManager(defaultSecurityManager);
+        Subject subject=SecurityUtils.getSubject();
+
+        UsernamePasswordToken token = null;
+        try {
+            token=new UsernamePasswordToken("tt","1234");
+        }catch (UnknownAccountException e1){
+            System.out.println("用户名不正确");
+        }catch (IncorrectCredentialsException e2){
+            System.out.println("密码错误");
+        }
+        subject.login(token);
+
+        System.out.println("登录是否成功："+ subject.isAuthenticated());
+        subject.checkRole("admin");
 
 
     }
