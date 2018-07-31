@@ -49,10 +49,9 @@ public class JDBCRealmTest1 {
             subject.login(token);
 
         System.out.println("登录是否成功："+ subject.isAuthenticated());
-        //退出登陆
-        subject.logout();
 
-            subject.checkRole("test_user");
+
+        subject.checkRole("test_user");
 
 
     }
