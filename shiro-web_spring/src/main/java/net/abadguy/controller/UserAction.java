@@ -45,4 +45,17 @@ public class UserAction {
     public String testRole1(){
         return "testRole success";
     }
+
+
+    @RequestMapping(value = "/testPerms",method = RequestMethod.GET)
+    @ResponseBody
+    public String testPerms(){
+        return "testPerms success";
+    }
+
+    @RequestMapping(value = "/testPerms1",method = RequestMethod.GET)
+    @ResponseBody
+    public String testPerms1(){
+        return "testPerms1 success";
+    }
 }

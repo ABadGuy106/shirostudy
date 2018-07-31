@@ -40,7 +40,7 @@ public class CustomRealm extends AuthorizingRealm {
 
     private Set<String> getPermissionsByUserName(String userName) {
         Set<String> sets=new HashSet<String>();
-        sets.add("user:del");
+        sets.add("user:delete");
         sets.add("user:update");
         return sets;
     }
