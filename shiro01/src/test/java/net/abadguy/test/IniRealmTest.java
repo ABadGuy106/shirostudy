@@ -21,15 +21,15 @@ public class IniRealmTest {
         SecurityUtils.setSecurityManager(defaultSecurityManager);
         Subject subject=SecurityUtils.getSubject();
 
-        UsernamePasswordToken token = null;
+        UsernamePasswordToken token = token=new UsernamePasswordToken("mak","1234");
         try {
-            token=new UsernamePasswordToken("mak","1234");
+            subject.login(token);
         }catch (UnknownAccountException e1){
             System.out.println("用户名不正确");
         }catch (IncorrectCredentialsException e2){
             System.out.println("密码错误");
         }
-        subject.login(token);
+
         subject.checkRole("admin");
         subject.checkPermission("user:delete");
 
